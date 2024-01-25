@@ -1,0 +1,57 @@
+# junior-group-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: junior-group-binding
+  namespace: test
+subjects:
+- kind: Group
+  name: junior
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: junior-role
+  apiGroup: rbac.authorization.k8s.io
+---
+# production-junior-group-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: production-junior-group-binding
+  namespace: production
+subjects:
+- kind: Group
+  name: senior
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: senior-role
+  apiGroup: rbac.authorization.k8s.io
+---
+# senior-group-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: senior-group-binding
+subjects:
+- kind: Group
+  name: senior
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: senior-role
+  apiGroup: rbac.authorization.k8s.io
+---
+# senior-group-binding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: junior-group-binding
+subjects:
+- kind: Group
+  name: junior
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: junior-role
+  apiGroup: rbac.authorization.k8s.io
